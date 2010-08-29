@@ -1,0 +1,19 @@
+Source: magit
+Section: devel
+Priority: optional
+Maintainer: Marius Vollmer <marius.vollmer@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), emacs | emacsen, texinfo, autoconf, automake
+Standards-Version: 3.8.4
+Homepage: http://zagadka.vm.bytemark.co.uk/magit/
+Vcs-Browser: http://gitorious.org/projects/magit/repos/mainline
+Vcs-Git: git://gitorious.org/magit/mainline.git
+
+Package: magit
+Architecture: all
+Depends: ${misc:Depends}, emacs | emacsen, git-core
+Description: A Emacs interface for Git
+ With Magit, you can inspect and modify your Git repositories with
+ Emacs.  You can review and commit the changes you have made to the
+ tracked files, for example, and you can browse the history of past
+ changes.  There is support for cherry picking, reverting, merging,
+ rebasing, and other common Git operations.
