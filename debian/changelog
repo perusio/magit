@@ -1,3 +1,9 @@
+magit (0.8.2-perusio1.1) unstable; urgency=low
+
+  * New upstream snapshot.
+
+ -- António P. P. Almeida <appa@perusio.net>  Sat, 02 Oct 2010 17:27:07 +0100
+
 magit (0.8.2-perusio1.0) unstable; urgency=low
 
   * New upstream release.
