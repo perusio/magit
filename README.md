@@ -10,6 +10,9 @@ To get started see the [Magit User Manual][manual] or perhaps the
 excellent [Magit screencast][screencast] by Alex Vollmer which
 demonstrates some of the major features.
 
+This is a fork from the [original][development] version that includes
+a debian package setup.
+
 Installing
 ----------
 
@@ -35,6 +38,14 @@ options.
 ### git-topgit
 
 `(require 'magit-topgit)` - integrates with topgit.
+
+##  Installing in Debian ##
+
+To build the debian package just issue the command:
+
+`fakeroot debian/rules binary`
+
+Now installed the packge using `dpkg -i`.
 
 Getting started
 ---------------
