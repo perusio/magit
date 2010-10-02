@@ -3,7 +3,7 @@
 configure:
 	autoreconf -fi
 
-build: configure
+build: #configure
 	dh build
 
 clean:
@@ -16,8 +16,8 @@ override_dh_auto_install:
 	rm debian/magit/usr/share/emacs/site-lisp/magit.elc
 	rm -f debian/magit/usr/share/info/dir
 
-override_dh_installchangelogs:
-	dh_installchangelogs NEWS
+#override_dh_installchangelogs:
+#	dh_installchangelogs NEWS
 
 install: build 
 	dh install

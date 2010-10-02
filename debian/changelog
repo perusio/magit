@@ -1,6 +1,8 @@
 magit (0.8.2-perusio1.1) unstable; urgency=low
 
   * New upstream snapshot.
+  * Updated the debian package config to reflect the new build setup.
+  * Added magit-topgit and magit-svn to the package.
 
  -- António P. P. Almeida <appa@perusio.net>  Sat, 02 Oct 2010 17:27:07 +0100
 
