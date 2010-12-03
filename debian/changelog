@@ -1,4 +1,10 @@
-magit (0.8.2-perusio1.1) unstable; urgency=low
+magit (0.8.2-perusio.1.2) unstable; urgency=low
+
+  * New upstream snapshot pulled from github.
+
+ -- António P. P. Almeida <appa@perusio.net>  Fri, 03 Dec 2010 02:04:32 +0000
+
+magit (0.8.2-perusio.1.1) unstable; urgency=low
 
   * New upstream snapshot.
   * Updated the debian package config to reflect the new build setup.
@@ -6,7 +12,7 @@ magit (0.8.2-perusio1.1) unstable; urgency=low
 
  -- António P. P. Almeida <appa@perusio.net>  Sat, 02 Oct 2010 17:27:07 +0100
 
-magit (0.8.2-perusio1.0) unstable; urgency=low
+magit (0.8.2-perusio.1.0) unstable; urgency=low
 
   * New upstream release.
 
