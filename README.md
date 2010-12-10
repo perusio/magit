@@ -41,7 +41,12 @@ options.
 
 ##  Installing in Debian ##
 
-To build the debian package just issue the command:
+I provide a debian repository](http://debian.perusio.net
+   "my debian repo") with packages for debian **testing** or
+   **unstable**.
+  
+If you want to build the debian package from source in a "sloppy" way
+just issue the command:
 
 `fakeroot debian/rules binary`
 
