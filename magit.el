@@ -429,6 +429,7 @@ Many Magit faces inherit from this one by default."
     (define-key map (kbd "$") 'magit-display-process)
     (define-key map (kbd "c") 'magit-log-edit)
     (define-key map (kbd "E") 'magit-interactive-rebase)
+    (define-key map (kbd "w") 'magit-wazzup)
     (define-key map (kbd "q") 'quit-window)
     map))
 
@@ -2467,6 +2468,8 @@ must return a string which will represent the log line.")
 			    (match-string 2 r)
 			  r)
 			'face (cond
+			       ((string= r "refs/stash")
+				'magit-log-head-label-local)
 			       ((string= (match-string 1 r) "remotes")
 				'magit-log-head-label-remote)
 			       ((string-match "^patches/[^/]*$" (match-string 1 r)) ; Stacked Git
@@ -4495,6 +4498,17 @@ With a prefix arg, do a submodule update --init"
   (interactive)
   (let ((default-directory (magit-get-top-dir default-directory)))
     (magit-run-git-async "submodule" "sync")))
+
+;; for emacs 22 compatibility
+
+(defun magit-string-match-p (regexp string &optional start)
+  "Same as `string-match' except this function does not change
+the match data."
+  (let ((inhibit-changing-match-data t))
+    (string-match regexp string start)))
+
+(when (not (fboundp 'string-match-p))
+  (fset 'string-match-p (symbol-function 'magit-string-match-p)))
 
 (provide 'magit)
 ;;; magit.el ends here
