@@ -46,7 +46,9 @@
     (running
      (actions
       ("!" "Command from root" magit-shell-command)
-      (":" "Git command" magit-git-command)))
+      (":" "Git command" magit-git-command)
+      ("g" "git gui" magit-run-git-gui)
+      ("k" "gitk" magit-run-gitk)))
 
     (fetching
      (man-page "git-fetch")
@@ -74,7 +76,7 @@
     (branching
      (man-page "git-branch")
      (actions
-      ("V" "Branch manager" magit-show-branches)
+      ("v" "Branch manager" magit-show-branches)
       ("n" "New" magit-create-branch)
       ("m" "Move" magit-move-branch)
       ("d" "Delete" magit-delete-branch)
@@ -84,7 +86,7 @@
      (man-page "git-tag")
      (actions
       ("t" "Lightweight" magit-tag)
-      ("T" "Annotated" magit-annotated-tag))
+      ("a" "Annotated" magit-annotated-tag))
      (switches
       ("-f" "Force" "-f")))
 
@@ -326,10 +328,8 @@ highlighed before the description."
     (magit-key-mode-redraw for-group))
   (message
    (concat
-    "Type a switch or argument's prefix keys ("
-    (propertize "highlighed" 'face 'font-lock-builtin-face)
-    ") to toggle it. Run 'actions' with their prefixes. "
-    "'?' for more help on specific options.")))
+    "Type a prefix key to toggle it. Run 'actions' with their prefixes. "
+    "'?' for more help.")))
 
 (defun magit-key-mode-get-key-map (for-group)
   "Get or build the keymap for FOR-GROUP."
