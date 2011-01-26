@@ -1,3 +1,9 @@
+magit (0.8.2+git20110126-perusio.1.0) unstable; urgency=low
+
+  * New upstream snapshot pulled from github.
+
+ -- António P. P. Almeida <appa@perusio.net>  Wed, 26 Jan 2011 15:07:52 +0000
+
 magit (0.8.2+git20101226-perusio.1.0) unstable; urgency=low
 
   * New upstream snaphost pulled from github.
