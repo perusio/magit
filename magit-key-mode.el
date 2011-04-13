@@ -2,7 +2,7 @@
 
 (defvar magit-key-mode-key-maps '()
   "This will be filled lazily with proper `define-key' built
-  keymaps as they're reqeusted.")
+  keymaps as they're requested.")
 
 (defvar magit-key-mode-buf-name "*magit-key*"
   "Name of the buffer.")
@@ -29,7 +29,7 @@
      (switches
       ("-m" "Only merge commits" "--merges")
       ("-f" "First parent" "--first-parent")
-      ("-i" "Case insesnitive patterns" "-i")
+      ("-i" "Case insensitive patterns" "-i")
       ("-pr" "Pickaxe regex" "--pickaxe-regex")
       ("-n" "Name only" "--name-only")
       ("-am" "All match" "--all-match")
@@ -125,7 +125,19 @@
       ("u" "Update" magit-submodule-update)
       ("b" "Both update and init" magit-submodule-update-init)
       ("i" "Init" magit-submodule-init)
-      ("s" "Sync" magit-submodule-sync))))
+      ("s" "Sync" magit-submodule-sync)))
+
+    (bisecting
+     (man-page "git-bisect")
+     (actions
+      ("b" "Bad" magit-bisect-bad)
+      ("g" "Good" magit-bisect-good)
+      ("k" "Skip" magit-bisect-skip)
+      ("l" "Log" magit-bisect-log)
+      ("r" "Reset" magit-bisect-reset)
+      ("s" "Start" magit-bisect-start)
+      ("u" "Run" magit-bisect-run)
+      ("v" "Visualize" magit-bisect-visualize))))
   "Holds the key, help, function mapping for the log-mode. If you
   modify this make sure you reset `magit-key-mode-key-maps' to
   nil.")
@@ -182,7 +194,7 @@ be a brief description of the binding."
 
 (defun magit-key-mode-insert-switch (for-group key desc switch)
   "Add a new binding (KEY) in FOR-GROUP which will add SWITCH to git's
-commandline when it runs. DESC should be a brief description of
+command line when it runs. DESC should be a brief description of
 the binding."
   (magit-key-mode-update-group for-group 'switches key desc switch))
 
@@ -306,7 +318,7 @@ put it in magit-key-mode-key-maps for fast lookup."
 (defun magit-key-mode (for-group &optional original-opts)
   "Mode for magit key selection. All commands, switches and
 options can be toggled/actioned with the key combination
-highlighed before the description."
+highlighted before the description."
   (interactive)
   ;; save the window config to restore it as was (no need to make this
   ;; buffer local)
@@ -445,7 +457,8 @@ item on one line."
          (actions (cdr (assoc 'actions options))))
     (magit-key-mode-draw-switches switches)
     (magit-key-mode-draw-args arguments)
-    (magit-key-mode-draw-actions actions)))
+    (magit-key-mode-draw-actions actions)
+    (insert "\n")))
 
 (defun magit-key-mode-de-generate (group)
   "Unbind the function for GROUP."
