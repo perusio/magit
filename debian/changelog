@@ -1,3 +1,9 @@
+magit (1.0.0+git20110818-perusio.1.0) unstable; urgency=low
+
+  * New upstream pulled from the git repo.
+
+ -- António P. P. Almeida <appa@perusio.net>  Thu, 18 Aug 2011 16:19:53 +0100
+
 magit (1.0.0+git20110608-perusio.1.0) unstable; urgency=low
 
   * New upstream release.
