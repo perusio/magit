@@ -1,3 +1,9 @@
+magit (1.0.0+git20111215-perusio.1.1) unstable; urgency=low
+
+  * Updated control file.
+
+ -- António P. P. Almeida <appa@perusio.net>  Thu, 15 Dec 2011 02:10:03 +0000
+
 magit (1.0.0+git20111215-perusio.1.0) unstable; urgency=low
 
   * Synched with upstream repo.

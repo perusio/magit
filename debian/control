@@ -4,9 +4,9 @@ Priority: optional
 Maintainer: António P. P. Almeida <appa@perusio.net>
 Build-Depends: debhelper (>= 7.0.50~), emacs | emacsen, texinfo, autoconf, automake
 Standards-Version: 3.8.4
-Homepage: http://philjackson.github.com/magit/
-Vcs-Browser: https://github.com/philjackson/magit
-Vcs-Git: git://github.com/philjackson/magit.git
+Homepage: https://github.com/magit
+Vcs-Browser: https://github.com/magit/magit
+Vcs-Git: git://github.com/magit/magit.git
 
 Package: magit
 Architecture: all
