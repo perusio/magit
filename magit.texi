@@ -218,8 +218,8 @@ them as described in the previous section.
 The first section shows @emph{Untracked files}, if there are any.  See
 @ref{Untracked files} for more details.
 
-Two section show your local changes.  They are explained fully in the
-next chapter, @ref{Staging and Committing}.
+The next two sections show your local changes.  They are explained
+fully in the next chapter, @ref{Staging and Committing}.
 
 If the current branch is associated with a remote tracking branch, the
 status buffer shows the differences between the current branch and the
@@ -235,7 +235,7 @@ During a history rewriting session, the status buffer shows the
 Untracked files are shown in the @emph{Untracked files} section.
 
 You can add an untracked file to the staging area with @kbd{s}.  If
-point is on the @emph{Untracked files} section title when you it
+point is on the @emph{Untracked files} section title when you hit
 @kbd{s}, all untracked files are staged.
 
 Typing @kbd{C-u S} anywhere will also stage all untracked files,
@@ -248,7 +248,7 @@ whole directories, for example.  The @kbd{I} command is similar to
 @kbd{i} but will add the file to @code{.git/info/exclude} instead.
 
 To delete an untracked file forever, use @kbd{k}.  If point is on the
-@emph{Untracked files} section title when you it @kbd{k}, all
+@emph{Untracked files} section title when you hit @kbd{k}, all
 untracked files are deleted.
 
 @node Staging and Committing
@@ -322,6 +322,10 @@ Typing @kbd{C-c C-e} will toggle the @code{--allow-empty} option.  This
 allows you to make commits that serve as notes, without including any
 changes.
 
+Typing @kbd{C-c C-t} will toggle the option to specify the name and
+email address for the commit's author.  The default is determined by
+the @code{user.name} and @code{user.email} git configuration settings.
+
 If you change your mind and don't want to go ahead with your commit
 while you are in the @code{*magit-log-edit*} buffer, you can just
 switch to another buffer, continue editing there, staging and
@@ -366,7 +370,7 @@ and given a numeric prefix argument, @kbd{e} will add this number of
 entries.
 
 You can move point to a commit and then cause various things to happen
-with it.  (The following commands work in any list of commit, such as
+with it.  (The following commands work in any list of commits, such as
 the one shown in the @emph{Unpushed commits} section.)
 
 Typing @kbd{RET} will pop up more information about the current commit
@@ -437,7 +441,7 @@ their unique hash, the hash will be highlighted and you will be able
 to visit the referenced commit either by clicking on it or by moving
 your cursor onto it and pressing @kbd{RET}.
 
-The commit buffer maintains a history of the commits that it's shown.
+The commit buffer maintains a history of the commits it has shown.
 After visiting a referenced commit you can type @kbd{C-c C-b} to get
 back to where you came from.  To go forward in the history, type
 @kbd{C-c C-f}.  There are also @code{[back]} and @code{[forward]}
@@ -454,7 +458,7 @@ is of a file in the status buffer that needs to be merged, you will be
 able to use Ediff as an interactive merge tool.  Otherwise, Ediff will
 simply show the two versions of the file.
 
-To show the changes from you working tree to another revision, type
+To show the changes from your working tree to another revision, type
 @kbd{d}.  To show the changes between two arbitrary revisions, type
 @kbd{D}.
 
@@ -469,7 +473,7 @@ Typing @kbd{v} will apply the selected changes in reverse.
 @node Tagging
 @chapter Tagging
 
-Typing @kbd{t t} will make a lighweight tag.  Typing @kbd{t T} will
+Typing @kbd{t t} will make a lighweight tag.  Typing @kbd{t a} will
 make an annotated tag.  It will put you in the normal
 @code{*magit-log-edit} buffer for writing commit messages, but typing
 @kbd{C-c C-c} in it will make the tag instead.  This is controlled by
@@ -608,7 +612,7 @@ that view will unignore it.
 @node Merging
 @chapter Merging
 
-Magit offers two ways to merge branches: manually and automatic.  A
+Magit offers two ways to merge branches: manual and automatic.  A
 manual merge will apply all changes to your working tree and staging
 area, but will not commit them, while an automatic merge will go ahead
 and commit them immediately.
@@ -620,7 +624,7 @@ you that the next commit will be a merge commit (with more than one
 parent).  If you want to abort a manual merge, just do a hard reset to
 HEAD with @kbd{X}.
 
-Merges can fail if the two branches you merge want to introduce
+Merges can fail if the two branches you want to merge introduce
 conflicting changes.  In that case, the automatic merge stops before the
 commit, essentially falling back to a manual merge.  You need to resolve
 the conflicts for example with @kbd{e} and stage the resolved files, for
@@ -728,7 +732,7 @@ remote if it doesn't exist already.  The local branch will be configured
 so that it pulls from the new remote branch.
 
 Typing @kbd{f f} will run @code{git fetch}.  It will prompt for the name
-of the remote to update if there are no default one.  Typing @kbd{f o}
+of the remote to update if there is no default one.  Typing @kbd{f o}
 will always prompt for the remote.  Typing @kbd{F F} will run @code{git
 pull}.  When you don't have a default branch configured to be pulled
 into the current one, you will be asked for it.
@@ -800,12 +804,53 @@ When you're finished bisecting you have to reset the session with
 @chapter Magit Extensions
 
 @menu
+* Activating extensions::
 * Interfacing with Subversion::
 * Interfacing with Topgit::
 * Interfacing with StGit::
 * Developing Extensions::
 @end menu
 
+@node Activating extensions
+@section Activating extensions
+
+Magit comes with a couple of shipped extensions that allow interaction
+with @code{git-svn}, @code{topgit} and @code{stgit}. See following
+sections for specific details on how to use them.
+
+Extensions can be activated globally or on a per-repository basis. Since
+those extensions are implemented as minor modes, one can use for example
+@kbd{M-x magit-topgit-mode} to toggle the @code{topgit} extension,
+making the corresponding section and commands (un)available.
+
+In order to do that automatically (and for every repository), one can
+use for example:
+
+@example
+(add-hook 'magit-mode-hook 'turn-on-magit-topgit)
+@end example
+
+Magit also allows configuring different extensions, based on the git
+repository configuration.
+
+@example
+(add-hook 'magit-mode-hook 'magit-load-config-extensions)
+@end example
+
+This will read git configuration variables and activate the
+relevant extensions.
+
+For example, after running the following commands, the @code{topgit}
+extension will be loaded for every repository, while the @code{svn} one
+will be loaded only for the current one.
+
+@example
+$ git config --global --add magit.extension topgit
+$ git config --add magit.extension svn
+@end example
+
+Note the @code{--add} flag, which means that each extension gets its own
+line in the @code{config} file.
 
 @node Interfacing with Subversion
 @section Interfacing with Subversion
@@ -947,6 +992,24 @@ This part is not really specific to extensions, except that menus take
 place in the ``Extensions'' submenu.
 
 @end itemize
+
+It is suggested that Magit extensions authors stick to the convention of
+making extensions minor modes. This has many advantages, including the
+fact that users are able to toggle extensions, and that it's easy to
+configure a specific set of extensions for a given repository.
+
+Shipped extensions can serve as an example of how to develop
+new extensions.
+
+Basically a @code{foo} extension should provide a @code{magit-foo-mode}
+minor mode, as well as a @code{turn-on-magit-foo} function.  The main
+task of the minor mode is to register/unregister the various hooks that
+the extension requires. The registered actions on the other hand can be
+left alone and activated globally, since they can be run only on
+displayed items, which won't happen when the minor mode is off.
+
+Don't forget to call @code{magit-refresh} when the minor mode is toggled
+interactively, so that the relevant sections can be shown or hidden.
 
 @node Using Git Directly
 @chapter Using Git Directly
